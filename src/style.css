@@ -55,7 +55,7 @@ mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .rg.dm,.bd.dm{opacity:.42;filter:grayscale(.7)}#isl.focus .rg:not(.sel),#isl.focus .bd:not(.sel){opacity:.72}.rg,.bd{transition:opacity .25s}
 .bd{cursor:pointer}.bn{font-weight:900;fill:#fff;stroke:var(--ol);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
 .bar{fill:var(--bar);opacity:.9}.bl{fill:var(--barInk);opacity:1;font-weight:600}.br{fill:var(--barInk);font-weight:800;font-variant-numeric:tabular-nums}
-.bd.sel .bar,.bd.hit .bar{fill:var(--accent);opacity:1}.bd.sel .bl,.bd.hit .bl{opacity:1}
+.bd.sel .bar,.bd.hit .bar{fill:#b93f22;opacity:1}.bd.sel .bl,.bd.hit .bl{opacity:1}
 .spin{transform-box:fill-box;transform-origin:center;animation:spin 14s linear infinite}.spin.r{animation-direction:reverse;animation-duration:9s}
 .wheel{transform-origin:0 -82px;animation:spin 40s linear infinite}.puff{animation:puff 4s ease-out infinite}.puff.p2{animation-delay:-2s}.lava,.fire{animation:glow 1.6s ease-in-out infinite alternate}
 .steam{animation:steam 3.2s ease-in-out infinite}.beam{animation:beam 4s ease-in-out infinite alternate}.blink{animation:glow 1s steps(2) infinite}.bird{animation:hop 3s ease-in-out infinite}

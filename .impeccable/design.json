@@ -1,0 +1,661 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T16:51:55.315831+00:00",
+  "title": "Design System: 收藏島",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Ember Orange",
+        "canonical": "#e4572e",
+        "tonalRamp": [
+          "#441a0e",
+          "#722c17",
+          "#a03d20",
+          "#c94d28",
+          "#e8704d",
+          "#ef9a82",
+          "#f6c4b6",
+          "#fcebe6"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Burnt Ember",
+        "canonical": "#b8401d",
+        "tonalRamp": [
+          "#371309",
+          "#5c200e",
+          "#812d14",
+          "#a2381a",
+          "#c35d3f",
+          "#d48c77",
+          "#e6bcb0",
+          "#f6e8e4"
+        ]
+      },
+      "accent-beige": {
+        "role": "primary",
+        "displayName": "Terracotta (beige theme)",
+        "canonical": "#c8502c",
+        "tonalRamp": [
+          "#3c180d",
+          "#642816",
+          "#8c381f",
+          "#b04627",
+          "#d06a4c",
+          "#de9680",
+          "#ecc2b5",
+          "#f8eae6"
+        ]
+      },
+      "accent-dark": {
+        "role": "primary",
+        "displayName": "Coral (dark theme)",
+        "canonical": "#ff8a5c",
+        "tonalRamp": [
+          "#4d291c",
+          "#80452e",
+          "#b26140",
+          "#e07951",
+          "#ff9c74",
+          "#ffb99d",
+          "#ffd6c6",
+          "#fff1eb"
+        ]
+      },
+      "sea": {
+        "role": "secondary",
+        "displayName": "Day Sea",
+        "canonical": "#6cc3dd",
+        "tonalRamp": [
+          "#203b42",
+          "#36626e",
+          "#4c889b",
+          "#5facc2",
+          "#82cce2",
+          "#a7dbeb",
+          "#cceaf3",
+          "#edf8fb"
+        ]
+      },
+      "sea-crest": {
+        "role": "secondary",
+        "displayName": "Sea Crest",
+        "canonical": "#a6e0ef",
+        "tonalRamp": [
+          "#324348",
+          "#537078",
+          "#749da7",
+          "#92c5d2",
+          "#b3e5f1",
+          "#caecf5",
+          "#e0f4f9",
+          "#f4fbfd"
+        ]
+      },
+      "sea-beige": {
+        "role": "secondary",
+        "displayName": "Jade Sea (beige theme)",
+        "canonical": "#7cb8aa",
+        "tonalRamp": [
+          "#253733",
+          "#3e5c55",
+          "#578177",
+          "#6da296",
+          "#90c3b7",
+          "#b0d4cc",
+          "#d1e6e1",
+          "#eff6f5"
+        ]
+      },
+      "sea-night": {
+        "role": "secondary",
+        "displayName": "Night Sea (dark theme)",
+        "canonical": "#0f2238",
+        "tonalRamp": [
+          "#050a11",
+          "#08111c",
+          "#0a1827",
+          "#0d1e31",
+          "#334356",
+          "#6f7a88",
+          "#abb2b9",
+          "#e2e4e7"
+        ]
+      },
+      "sand": {
+        "role": "secondary",
+        "displayName": "Beach Sand",
+        "canonical": "#f2e0a9",
+        "tonalRamp": [
+          "#494333",
+          "#797054",
+          "#a99d76",
+          "#d5c595",
+          "#f4e5b6",
+          "#f7eccb",
+          "#faf4e1",
+          "#fdfbf5"
+        ]
+      },
+      "grass": {
+        "role": "secondary",
+        "displayName": "Meadow",
+        "canonical": "#9fd27d",
+        "tonalRamp": [
+          "#303f26",
+          "#50693e",
+          "#6f9358",
+          "#8cb96e",
+          "#add990",
+          "#c5e4b1",
+          "#ddefd2",
+          "#f3faef"
+        ]
+      },
+      "leaf": {
+        "role": "secondary",
+        "displayName": "Leaf",
+        "canonical": "#5fae55",
+        "tonalRamp": [
+          "#1d341a",
+          "#30572a",
+          "#427a3b",
+          "#54994b",
+          "#77ba6e",
+          "#9fce99",
+          "#c7e3c4",
+          "#ecf5eb"
+        ]
+      },
+      "rock": {
+        "role": "secondary",
+        "displayName": "Ridge Stone",
+        "canonical": "#a79cab",
+        "tonalRamp": [
+          "#322f33",
+          "#544e56",
+          "#756d78",
+          "#938996",
+          "#b4abb8",
+          "#cac4cd",
+          "#e0dce2",
+          "#f4f3f5"
+        ]
+      },
+      "rock-shade": {
+        "role": "secondary",
+        "displayName": "Ridge Shade",
+        "canonical": "#857a8d",
+        "tonalRamp": [
+          "#28252a",
+          "#423d46",
+          "#5d5563",
+          "#756b7c",
+          "#978e9e",
+          "#b6afbb",
+          "#d4d0d7",
+          "#f0eff1"
+        ]
+      },
+      "outline": {
+        "role": "secondary",
+        "displayName": "Ink Outline",
+        "canonical": "#2a2340",
+        "tonalRamp": [
+          "#0d0b13",
+          "#151220",
+          "#1d182d",
+          "#251f38",
+          "#4a445d",
+          "#7f7b8c",
+          "#b4b2bc",
+          "#e5e5e8"
+        ]
+      },
+      "info-bar": {
+        "role": "secondary",
+        "displayName": "Info Bar Navy",
+        "canonical": "#24324f",
+        "tonalRamp": [
+          "#0b0f18",
+          "#121928",
+          "#192337",
+          "#202c46",
+          "#455169",
+          "#7c8495",
+          "#b2b7c1",
+          "#e5e6ea"
+        ]
+      },
+      "info-bar-ink": {
+        "role": "secondary",
+        "displayName": "Info Bar Ink",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#4d4d4d",
+          "#808080",
+          "#b2b2b2",
+          "#e0e0e0",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ]
+      },
+      "pedestal-earth": {
+        "role": "secondary",
+        "displayName": "Pedestal Earth",
+        "canonical": "#6b4a36",
+        "tonalRamp": [
+          "#201610",
+          "#36251b",
+          "#4b3426",
+          "#5e4130",
+          "#816554",
+          "#a69286",
+          "#cbc0b9",
+          "#ede9e7"
+        ]
+      },
+      "trunk": {
+        "role": "secondary",
+        "displayName": "Trunk Brown",
+        "canonical": "#8a5a3a",
+        "tonalRamp": [
+          "#291b11",
+          "#452d1d",
+          "#613f29",
+          "#794f33",
+          "#9c7358",
+          "#b99c89",
+          "#d6c5ba",
+          "#f1ebe7"
+        ]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Mist Page",
+        "canonical": "#eef3f6",
+        "tonalRamp": [
+          "#47494a",
+          "#777a7b",
+          "#a7aaac",
+          "#d1d6d8",
+          "#f1f5f7",
+          "#f5f8fa",
+          "#f9fbfc",
+          "#fdfefe"
+        ]
+      },
+      "page-beige": {
+        "role": "neutral",
+        "displayName": "Parchment (beige theme)",
+        "canonical": "#f3ead8",
+        "tonalRamp": [
+          "#494641",
+          "#7a756c",
+          "#aaa497",
+          "#d6cebe",
+          "#f5edde",
+          "#f8f2e8",
+          "#fbf8f1",
+          "#fefcfa"
+        ]
+      },
+      "page-dark": {
+        "role": "neutral",
+        "displayName": "Night Slate (dark theme)",
+        "canonical": "#0e141c",
+        "tonalRamp": [
+          "#040608",
+          "#070a0e",
+          "#0a0e14",
+          "#0c1219",
+          "#32373e",
+          "#6e7277",
+          "#abadb0",
+          "#e2e3e4"
+        ]
+      },
+      "surface-1": {
+        "role": "neutral",
+        "displayName": "Mist Surface",
+        "canonical": "#e1e9ee",
+        "tonalRamp": [
+          "#444647",
+          "#707477",
+          "#9ea3a7",
+          "#c6cdd1",
+          "#e6ecf1",
+          "#edf2f5",
+          "#f4f7f9",
+          "#fbfcfd"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Mist Surface Deep",
+        "canonical": "#d3dde4",
+        "tonalRamp": [
+          "#3f4244",
+          "#6a6e72",
+          "#949ba0",
+          "#bac2c9",
+          "#dae2e8",
+          "#e5ebef",
+          "#f0f3f6",
+          "#fafbfc"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "White Card",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#4d4d4d",
+          "#808080",
+          "#b2b2b2",
+          "#e0e0e0",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Harbor Ink",
+        "canonical": "#1b2735",
+        "tonalRamp": [
+          "#080c10",
+          "#0e141a",
+          "#131b25",
+          "#18222f",
+          "#3d4753",
+          "#767d86",
+          "#afb3b8",
+          "#e4e5e7"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#526273",
+        "tonalRamp": [
+          "#191d23",
+          "#29313a",
+          "#394550",
+          "#485665",
+          "#6c7a88",
+          "#97a1ab",
+          "#c2c8ce",
+          "#eaecee"
+        ]
+      },
+      "ink-beige": {
+        "role": "neutral",
+        "displayName": "Walnut Ink (beige theme)",
+        "canonical": "#33281d",
+        "tonalRamp": [
+          "#0f0c09",
+          "#1a140e",
+          "#241c14",
+          "#2d231a",
+          "#52483f",
+          "#857e77",
+          "#b8b4b0",
+          "#e7e5e4"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Moon Ink (dark theme)",
+        "canonical": "#e8edf3",
+        "tonalRamp": [
+          "#464749",
+          "#74767a",
+          "#a2a6aa",
+          "#ccd1d6",
+          "#ebf0f5",
+          "#f1f4f8",
+          "#f7f9fb",
+          "#fcfdfe"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#cad6df",
+        "tonalRamp": [
+          "#3d4043",
+          "#656b70",
+          "#8d969c",
+          "#b2bcc4",
+          "#d2dce4",
+          "#dfe6ec",
+          "#ecf1f4",
+          "#f9fafb"
+        ]
+      },
+      "search-mark": {
+        "role": "neutral",
+        "displayName": "Highlighter",
+        "canonical": "#ffe08a",
+        "tonalRamp": [
+          "#4d4329",
+          "#807045",
+          "#b29d61",
+          "#e0c579",
+          "#ffe59c",
+          "#ffecb9",
+          "#fff4d6",
+          "#fffbf1"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Single page heading above the map; 19px on phone."
+      },
+      "brand": {
+        "displayName": "Brand",
+        "purpose": "Wordmark beside the cube mark."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Video titles, two-line clamp."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base text; search input at 16px."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Creator, date, intro snippet."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chip row labels 總分類 / 收藏夾."
+      },
+      "map-badge": {
+        "displayName": "Map Badge",
+        "purpose": "Outlined white region names on the island, in map units (27 on portrait map)."
+      },
+      "keycap": {
+        "displayName": "Keycap",
+        "purpose": "The / shortcut hint only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "map-lift",
+        "value": "0 1px 2px rgba(20,30,50,.08), 0 12px 32px -12px rgba(20,40,70,.28)",
+        "purpose": "Map frame only."
+      },
+      {
+        "name": "hairline-lift",
+        "value": "0 1px 2px rgba(20,30,50,.06)",
+        "purpose": "Search field at rest."
+      },
+      {
+        "name": "pressed-segment",
+        "value": "0 1px 3px rgba(20,30,50,.14)",
+        "purpose": "Active theme segment."
+      },
+      {
+        "name": "focus-glow",
+        "value": "0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent)",
+        "purpose": "Search field focus."
+      },
+      {
+        "name": "bar-glass",
+        "value": "backdrop-filter: saturate(1.4) blur(10px) over 92% page colour",
+        "purpose": "Sticky top bar."
+      }
+    ],
+    "motion": [
+      {
+        "name": "lift",
+        "value": "transform .28s cubic-bezier(.2,.8,.2,1), translateY(-7)",
+        "purpose": "Landmark rises on hover, focus, selection."
+      },
+      {
+        "name": "ring-pulse",
+        "value": "1.8s ease-out infinite",
+        "purpose": "Selected pedestal ring."
+      },
+      {
+        "name": "dim",
+        "value": "opacity .25s",
+        "purpose": "Regions fading on select (72%) and no-hit search (42% + grayscale)."
+      },
+      {
+        "name": "thumb-hover",
+        "value": "transform .2s, translateY(-2px)",
+        "purpose": "Thumbnail hover."
+      },
+      {
+        "name": "ambient-slow",
+        "value": "waves 6s, river flow 3s, clouds 26s, gears 14s/9s, ferris wheel 40s",
+        "purpose": "World life; all stop under prefers-reduced-motion."
+      },
+      {
+        "name": "ambient-quick",
+        "value": "smoke 4s, steam 3.2s, beam 4s, lava glow 1.6s, aerial blink 1s steps, bird hop 3s",
+        "purpose": "Landmark details; stop under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Sticky-bar search across all videos; / focuses it.",
+      "html": "<label class=\"ds-sr\"><svg viewBox=\"0 0 20 20\" class=\"ds-si\" aria-hidden=\"true\"><circle cx=\"8.5\" cy=\"8.5\" r=\"5.5\"/><path d=\"M13 13l4.5 4.5\"/></svg><input class=\"ds-q\" type=\"search\" placeholder=\"搜尋 635 支影片：標題、UP 主、簡介\"><kbd class=\"ds-kb\">/</kbd></label>",
+      "css": ".ds-sr{display:flex;align-items:center;gap:8px;height:44px;max-width:620px;border:1px solid var(--line,#cad6df);border-radius:12px;padding:0 6px 0 14px;background:var(--btn,#fff);box-shadow:0 1px 2px rgba(20,30,50,.06);font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif}.ds-sr:focus-within{border-color:var(--accent,#e4572e);box-shadow:0 0 0 3px rgba(228,87,46,.22)}.ds-si{width:18px;height:18px;fill:none;stroke:var(--ink2,#526273);stroke-width:1.8;stroke-linecap:round}.ds-q{flex:1;min-width:0;border:0;background:transparent;color:var(--ink,#1b2735);font:inherit;font-size:16px;outline:none}.ds-q::placeholder{color:var(--ink2,#526273)}.ds-kb{font:600 12px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--ink2,#526273);border:1px solid var(--line,#cad6df);border-bottom-width:2px;border-radius:5px;padding:4px 7px;margin-right:6px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet hairline button, e.g. collapse map.",
+      "html": "<button class=\"ds-btn\" type=\"button\">收合地圖</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line,#cad6df);background:var(--btn,#fff);color:var(--ink,#1b2735);font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif;font-size:14px;padding:6px 14px;border-radius:10px;cursor:pointer}.ds-btn:hover{background:var(--s1,#e1e9ee)}.ds-btn:focus-visible{outline:2px solid var(--accent,#e4572e);outline-offset:2px}"
+    },
+    {
+      "name": "Theme Switch",
+      "kind": "nav",
+      "refersTo": "theme-segment",
+      "description": "Segmented auto / light / beige / dark control.",
+      "html": "<div class=\"ds-theme\" role=\"group\"><button type=\"button\">自動</button><button type=\"button\" aria-pressed=\"true\">淺色</button><button type=\"button\">米色</button><button type=\"button\">深色</button></div>",
+      "css": ".ds-theme{display:inline-flex;gap:2px;padding:3px;background:var(--s1,#e1e9ee);border-radius:11px;font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif}.ds-theme button{border:0;background:none;color:var(--ink2,#526273);font:inherit;font-size:14px;padding:5px 11px;border-radius:8px;cursor:pointer}.ds-theme button:hover{color:var(--ink,#1b2735)}.ds-theme button[aria-pressed=true]{background:var(--btn,#fff);color:var(--ink,#1b2735);font-weight:700;box-shadow:0 1px 3px rgba(20,30,50,.14)}.ds-theme button:focus-visible{outline:2px solid var(--accent,#e4572e);outline-offset:2px}"
+    },
+    {
+      "name": "Group Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Filter chip with region swatch and tabular count; selected inverts to ink.",
+      "html": "<div class=\"ds-chips\"><button aria-pressed=\"true\">全部 <span>635</span></button><button><i style=\"background:#2fb0d4\"></i>AI <span>90</span></button><button><i style=\"background:#d4892a\"></i>學習 <span>20</span></button><button class=\"ds-zero\"><i style=\"background:#d9542a\"></i>遊戲 <span>0</span></button></div>",
+      "css": ".ds-chips{display:flex;flex-wrap:wrap;gap:8px;font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif}.ds-chips button{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line,#cad6df);background:var(--btn,#fff);border-radius:999px;padding:5px 13px;font:inherit;font-size:14.5px;color:var(--ink,#1b2735);cursor:pointer}.ds-chips span{color:var(--ink2,#526273);font-variant-numeric:tabular-nums;font-size:13px}.ds-chips i{width:10px;height:10px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}.ds-chips button:hover{border-color:var(--ink2,#526273)}.ds-chips button[aria-pressed=true]{background:var(--ink,#1b2735);border-color:var(--ink,#1b2735);color:var(--bg,#eef3f6);font-weight:700}.ds-chips button[aria-pressed=true] span{color:inherit;opacity:.75}.ds-chips .ds-zero{opacity:.5}.ds-chips button:focus-visible{outline:2px solid var(--accent,#e4572e);outline-offset:2px}"
+    },
+    {
+      "name": "Video Card",
+      "kind": "card",
+      "refersTo": "video-thumb",
+      "description": "Thumbnail over a region-colour placeholder, title, meta, folder tag.",
+      "html": "<article class=\"ds-card\"><a class=\"ds-th\" href=\"#\" style=\"--gc:#2fb0d4;--gl:#bfe8ef\"><span class=\"ds-du\">12:45</span></a><a class=\"ds-t\" href=\"#\">一個 App 管理所有 Agent？這個 AI 工作台讓我效率爆增</a><div class=\"ds-up\">云八云 · 2026-11-23 收藏</div><button class=\"ds-f\" type=\"button\">AI · 寫程式 · Agent</button></article>",
+      "css": ".ds-card{width:280px;display:flex;flex-direction:column;align-items:flex-start;font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif}.ds-th{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--gl),var(--gc));transition:transform .2s}.ds-th:hover{transform:translateY(-2px)}.ds-du{position:absolute;right:7px;bottom:7px;background:rgba(0,0,0,.78);color:#fff;font-size:12.5px;font-weight:600;line-height:1.5;padding:0 6px;border-radius:5px;font-variant-numeric:tabular-nums}.ds-t{margin-top:10px;font-size:15.5px;line-height:1.45;font-weight:700;color:var(--ink,#1b2735);text-decoration:none}.ds-t:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent,#e4572e)}.ds-up{margin-top:3px;font-size:13.5px;color:var(--ink2,#526273)}.ds-f{margin-top:8px;border:0;border-radius:6px;padding:2px 9px;font:inherit;font-size:13px;font-weight:700;color:var(--acc-ink,#b8401d);background:rgba(228,87,46,.13);cursor:pointer}.ds-f:hover{background:rgba(228,87,46,.24)}"
+    },
+    {
+      "name": "Region Badge and Info Bar",
+      "kind": "custom",
+      "refersTo": "info-bar",
+      "description": "Signature map label: icon disc, outlined name, navy count pill; accent when selected or hit.",
+      "html": "<svg class=\"ds-bd\" viewBox=\"0 0 180 70\" width=\"270\"><g transform=\"translate(40 20)\"><circle r=\"15.6\" fill=\"#d4892a\" stroke=\"#2a2340\" stroke-width=\"2.5\"/><g fill=\"#fff\" transform=\"scale(1.42)\"><path d=\"M-9-6Q-4-9 0-5Q4-9 9-6V7Q4 4 0 8Q-4 4-9 7Z\"/></g></g><text x=\"64\" y=\"27\" class=\"ds-bn\">學習</text><rect x=\"15\" y=\"38\" width=\"150\" height=\"24\" rx=\"12\" class=\"ds-bar\"/><text x=\"28\" y=\"55\" class=\"ds-bl\">收藏夾 1</text><text x=\"152\" y=\"55\" text-anchor=\"end\" class=\"ds-br\">20 支</text></svg>",
+      "css": ".ds-bd{font-family:\"PingFang TC\",\"Noto Sans TC\",\"Microsoft JhengHei UI\",\"Microsoft JhengHei\",system-ui,sans-serif}.ds-bn{font-size:19px;letter-spacing:3.8px;font-weight:900;fill:#fff;stroke:var(--ol,#2a2340);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}.ds-bar{fill:var(--bar,#24324f);opacity:.9;transition:fill .25s}.ds-bd:hover .ds-bar{fill:var(--accent,#e4572e);opacity:1}.ds-bl{fill:var(--barInk,#fff);font-size:14px;font-weight:600}.ds-br{fill:var(--barInk,#fff);font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Stage-Select Island",
+    "overview": "**Creative North Star: \"The Stage-Select Island\"**\n\nThe catalog is a game world map. One continuous organic island sits on a sea; each topic group is a region with its own ground material, one big outlined cartoon landmark on a round earthen pedestal, an icon-plus-name badge and a pill info bar carrying its true video count. Picking a topic is picking a stage. Around the map, the product shell is deliberately plain: a clean system-sans bar, quiet hairline controls and a thumbnail wall, so the illustration is the only loud thing on screen and the thumbnails are the content.\n\nThe illustration speaks one dialect: flat fills, a single dark outline colour at a consistent stroke (2 to 2.5 map units, round joins), one lighter highlight and one darker side-shade per volume, soft black ellipse shadows on the ground. Everything on the island is drawn in SVG code, generated from the folder data, and regenerates daily; new groups get a default landmark (a tent with a flag) and a slot in the next row, so the world tolerates change without hand placement.\n\nThe world shifts with the time of day, not with a different palette system: light is a day sea, beige a warm afternoon with a teal-green sea and brown outlines, dark a night sea where ground materials drop to 55% brightness, windows glow amber, landmarks get a blurred halo and a moon with its reflection appears. The rejected looks, confirmed by the owner, are the nautical sea chart this world replaced and an isometric tile board.",
+    "keyCharacteristics": [
+      "One island, one landmark per group, three staggered rows (4/5/4) on desktop, three columns on phone.",
+      "Map regions are working controls with true counts; folders stay off the map and appear as chips.",
+      "Outlined cartoon illustration inside, quiet product chrome outside.",
+      "Four themes (auto, light, beige, dark) retint both the chrome and the whole world.",
+      "Ambient motion is slow and small, and every loop stops under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Ember Rule",
+        "body": "The accent marks selection, focus and search hits, and nothing else. The chrome never gets a second accent; colour variety lives on the island.",
+        "section": "colors"
+      },
+      {
+        "name": "The Region Owns Its Colour Rule",
+        "body": "A group's icon colour is fixed and travels with it: landmark ground, badge disc, chip swatch, card placeholder. Never recolour a region per screen.",
+        "section": "colors"
+      },
+      {
+        "name": "The Time Of Day Rule",
+        "body": "A theme changes the light on the world, not the world: same layout, same landmarks, same region pairs; only sea, outline, ground brightness and night details move.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Counts Rule",
+        "body": "Every count (chip numbers, info bar totals, durations) uses tabular figures so numbers do not jitter as search narrows them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift On Choose Rule",
+        "body": "On the map, hover, keyboard focus and selection raise a landmark 7 units off its pedestal and light an accent ring on the pedestal; the selected ring pulses. Nothing else on the island moves in response to the pointer.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** give every new group a place on the island: a landmark, a ground material and a region colour pair, in the same outlined style.",
+      "**Do** draw world art in SVG code with the single outline colour, flat fills, one highlight and one shade per volume.",
+      "**Do** keep counts true and tabular on the map, chips and result line.",
+      "**Do** keep the chrome quiet: hairline borders, white cards, the system CJK sans, one accent.",
+      "**Do** keep ambient motion slow (6 to 40 second loops for waves, clouds, wheel; 1 to 4 seconds for smoke, steam, beams, lava glow) and stop all of it under reduced motion.",
+      "**Do** carry each theme into the world: sea, outline, ground brightness and night details change with it."
+    ],
+    "donts": [
+      "**Don't** put folders on the map; they live in the chip row after a region is chosen.",
+      "**Don't** return to a nautical sea chart or an isometric tile board.",
+      "**Don't** copy the reference game's art; landmarks are original drawings.",
+      "**Don't** use the accent as decoration; it means selected, focused or matched.",
+      "**Don't** let the island push the thumbnails aside; the map collapses on request and the wall stays the content."
+    ]
+  }
+}
