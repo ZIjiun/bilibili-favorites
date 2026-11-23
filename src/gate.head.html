@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>收藏島</title><style>:root{--paper:#eef3f6;--ink:#1b2735;--ink2:#526273;--line:#cad6df;--accent:#c8462a}
+@media(prefers-color-scheme:dark){:root{--paper:#0e141c;--ink:#e8edf3;--ink2:#9aa8b8;--line:#253141;--accent:#ff8a5c}}
+*{box-sizing:border-box}html{color-scheme:light dark}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--paper);color:var(--ink);font:15px/1.65 "PingFang TC","Noto Sans TC","Microsoft JhengHei UI","Microsoft JhengHei",system-ui,sans-serif}
+main{width:min(380px,calc(100vw - 40px))}.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:8px}h1{font-size:30px;line-height:1.3;margin:0 0 22px}
+form{display:flex;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:6px}form:focus-within{border-color:var(--accent)}
+#pw{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:20px;padding:6px 0;outline:none}
+#go{border:0;background:var(--ink);color:var(--paper);font:inherit;font-size:14px;font-weight:600;padding:6px 16px;border-radius:6px;cursor:pointer}#go:disabled{opacity:.5;cursor:default}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}label{display:block;margin-top:14px;font-size:13.5px;color:var(--ink2)}#msg{min-height:1.6em;margin:10px 0 0;font-size:13.5px;color:var(--accent)}</style></head><body><main><div class="eyebrow">收藏島</div><h1>輸入密碼</h1><form id="f"><input id="pw" type="password" autocomplete="current-password" aria-label="密碼" placeholder="密碼"><button id="go" type="submit">解鎖</button></form><label><input id="rm" type="checkbox"> 在這個裝置記住密碼</label><p id="msg" role="status"></p></main><script>(function gate(S,I,C,IT){
+ const $=s=>document.querySelector(s);
+ const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+ const f=$('#f'),pw=$('#pw'),msg=$('#msg'),btn=$('#go');
+ async function dec(p){
+  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(S),iterations:IT,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+  return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(I)},key,b64(C)));
+ }
+ async function go(p,remember){
+  if(!window.crypto||!crypto.subtle){msg.textContent='這個瀏覽器不支援解密，請改用較新的瀏覽器。';return;}
+  btn.disabled=true;msg.textContent='解鎖中…';
+  let h;try{h=await dec(p);}catch(e){msg.textContent='密碼不對，請再試一次。';btn.disabled=false;try{localStorage.removeItem('bk');}catch(e2){}pw.select();return;}
+  if(remember){try{localStorage.setItem('bk',p);}catch(e3){}}
+  document.open();document.write(h);document.close();
+ }
+ f.addEventListener('submit',e=>{e.preventDefault();go(pw.value,$('#rm').checked);});
+ let saved=null;try{saved=localStorage.getItem('bk');}catch(e){}
+ if(saved)go(saved,true);else pw.focus();
+}
