@@ -123,7 +123,7 @@ function app(D,F,gen,MA,MB){
   if(ks.length&&d[6]){const nl=norm(d[6]);const p=ks.map(k=>nl.indexOf(k)).filter(x=>x>=0).sort((a,b)=>a-b)[0];if(p!==undefined){const s=Math.max(0,p-18);sn='<p class="sn">'+(s?'…':'')+hl(d[6].slice(s,s+70),ks)+'…</p>';}}
   const gn=F[d[2]].split('｜')[0],gc=ART.colOf(gn);
   return '<article class="card"><a class="th" href="'+esc(d[3])+'" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" style="--gc:'+gc[0]+';--gl:'+gc[1]+'"><svg class="ph" viewBox="-12 -12 24 24"><g fill="#fff" style="--ic:'+gc[0]+'">'+ART.iOf(gn)+'</g></svg>'+(d[8]?'<img src="'+esc(img(d[8]))+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<span class="du">'+d[4]+'</span></a>'+
-  '<h3 class="tw"><a class="t" href="'+esc(d[3])+'" target="_blank" rel="noopener">'+hl(d[0],ks)+'</a></h3><div class="up">'+hl(d[1],ks)+' · '+d[5]+' 收藏</div>'+sn+
+  '<h3 class="tw"><a class="t" href="'+esc(d[3])+'" target="_blank" rel="noopener">'+hl(d[0],ks)+'</a></h3><div class="up">'+hl(d[1],ks)+' · <span class="nw">'+d[5]+' 收藏</span></div>'+sn+
   '<button class="f" type="button" data-i="'+d[2]+'">'+esc(fshort(d[2]))+'</button></article>';};
  const more=()=>{const n=Math.min(shown+48,view.length);if(n<=shown)return;$('#grid').insertAdjacentHTML('beforeend',view.slice(shown,n).map(card).join(''));shown=n;};
  const fill=()=>{let g=0;while(shown<view.length&&g++<20&&$('#more').getBoundingClientRect().top<innerHeight+900)more();};
