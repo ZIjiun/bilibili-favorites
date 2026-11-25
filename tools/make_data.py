@@ -37,6 +37,12 @@ for d in df['added']:
     cover = re.sub(r'^https?://i\d\.hdslb\.com/bfs/', '', d['cover'] or '')
     D.append([tw.convert(clean(d['t'])), d['up'], d['fi'], 'https://www.bilibili.com/video/' + d['bv'], dur(d['dur']),
               datetime.datetime.fromtimestamp(fav, TZ).strftime('%Y-%m-%d'), tw.convert(clean(d['intro'])) or '-', 0, cover, fav])
+# OpenCC s2twp phrase slips seen in real titles (e.g. 和面试 → 和麵試); applied to every row
+FIX = {'麵試': '面試', '麵對': '面對', '麵臨': '面臨', '麵子': '面子', '麵向': '面向'}
+for r in D:
+    for k in (0, 6):
+        for a, b in FIX.items():
+            r[k] = r[k].replace(a, b)
 D.sort(key=lambda r: -r[9])
 
 # per-character simplified→traditional map so a search typed either way matches
