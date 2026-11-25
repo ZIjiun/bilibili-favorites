@@ -11,6 +11,8 @@ function app(D,F,gen,MA,MB){
  const img=c=>c?(/^http/.test(c)?c:'https://i0.hdslb.com/bfs/'+c+'@480w_270h_1c.webp'):'';
  const live=groups.filter(g=>g.items.some(x=>fc[x.i]));
  const nodesOf=g=>g.items.filter(x=>fc[x.i]);
+ const ORDN=['命理','AI','程式','遊戲','開源','學習','職場','心理','生活','萌寵','感情','娛樂','放鬆'];
+ const ORD=ORDN.concat(groups.map(g=>g.name).filter(n=>!ORDN.includes(n))).map(n=>groups.findIndex(g=>g.name===n)).filter(i=>i>=0);
 /*stage*/ const stage=s=>{const a=s.split('・')[0].trim(),u=c=>/[\x00-\x7f]/.test(c)?.5:1;let w=0,o='';for(const c of a){if(w+u(c)>6){return o.trim()+'…';}w+=u(c);o+=c;}return o;};
 
  /* ---------- island world map ---------- */
@@ -28,7 +30,7 @@ function app(D,F,gen,MA,MB){
    for(let x=260;x<=1140;x+=110)circ.push([x,150,105]);
    river=[[760,150]];rows.forEach((r,i)=>{const y=238+i*184;river.push([i%2?832:700,y-80],[i%2?826:706,y+10]);});
    ridge={x0:230,x1:1170,y:182,step:58};
-  }else{W=720;R=132;const list=known.concat(extraG);const nr=Math.ceil(list.length/3),rem=list.length%3;list.forEach((nm,k)=>{const r=Math.floor(k/3),c=k%3;const last=r===nr-1&&rem;pos[nm]=last?[rem===1?360:[242,478][c],250+r*250+40]:[[125,360,595][c],250+r*250+(c===1?70:0)];});
+  }else{W=720;R=132;const list=known.concat(extraG);const nr=Math.ceil(list.length/3),rem=list.length%3;list.forEach((nm,k)=>{const r=Math.floor(k/3),c=k%3;const last=r===nr-1&&rem;pos[nm]=last?[rem===1?360:[242,478][c],250+r*285+40]:[[125,360,595][c],250+r*285+(c===1?70:0)];});
    const ys=Object.values(pos).map(p=>p[1]);H=Math.max(...ys)+190;
    circ.push([200,140,110],[520,140,110],[360,120,110]);
    river=[[250,150]];for(let y=300;y<H;y+=170)river.push([y%340<170?240:252,y]);
@@ -80,29 +82,29 @@ function app(D,F,gen,MA,MB){
  function drawMap(cf,active){
   const mob=mq.matches;LY=layout(mob);const L=LY;const fs=mob?27:19;
   let s='<svg id="isl" viewBox="'+L.vb.join(' ')+'" role="group" aria-label="收藏島地圖" class="'+(mob?'m':'d')+'">'+scenery(L);
-  const names=Object.keys(L.pos).sort((a,b)=>L.pos[a][1]-L.pos[b][1]);let top='';
+  const names=Object.keys(L.pos).sort((a,b)=>L.pos[a][1]-L.pos[b][1]||L.pos[a][0]-L.pos[b][0]);let top='';
   names.forEach(nm=>{const g=live.find(x=>x.name===nm);if(!g)return;const gx=groups.indexOf(g),[x,y]=L.pos[nm];const col=ART.colOf(nm);
    const tot=g.items.reduce((a,t)=>a+cf[t.i],0),all=g.items.reduce((a,t)=>a+fc[t.i],0),nf=nodesOf(g).length;
    const sel=st.g===gx||(st.f!==null&&g.items.some(t=>t.i===st.f)),dim=active&&!tot,hit=active&&tot;
    const lab=nm+'區，'+(active?'符合 '+tot+' 支':all+' 支影片')+'，'+nf+' 個收藏夾'+(sel?'，已選取':'');
-   s+='<g class="rg'+(sel?' sel':'')+(dim?' dm':'')+(hit?' hit':'')+'" data-t="g" data-v="'+gx+'" role="button" tabindex="0" aria-pressed="'+sel+'" aria-label="'+esc(lab)+'" transform="translate('+x+' '+y+')">'+
-    '<ellipse cx="0" cy="16" rx="86" ry="27" class="psh"/><ellipse class="selring" cx="0" cy="4" rx="88" ry="28"/><ellipse class="fring" cx="0" cy="4" rx="97" ry="34"/>'+
+   s+='<g class="rg'+(sel?' sel':'')+(dim?' dm':'')+(hit?' hit':'')+'" data-t="g" data-v="'+gx+'" role="button" tabindex="-1" aria-pressed="'+sel+'" aria-label="'+esc(lab)+'" transform="translate('+x+' '+y+')">'+
+    '<ellipse cx="0" cy="16" rx="86" ry="27" class="psh"/><ellipse class="selbk" cx="0" cy="4" rx="88" ry="28"/><ellipse class="selring" cx="0" cy="4" rx="88" ry="28"/><ellipse class="fring" cx="0" cy="4" rx="97" ry="34"/>'+
     '<g class="ped"><path d="M-72 0V10A72 22 0 0 0 72 10V0" fill="#6b4a36" class="o"/><ellipse cx="0" cy="0" rx="72" ry="22" fill="'+col[1]+'" class="o"/><ellipse cx="-6" cy="-3" rx="54" ry="13" fill="#ffffff" opacity=".28"/></g>'+
     '<g class="lift"><g class="art">'+ART.lOf(nm)()+'</g></g></g>';
    /* badge + info bar */
    const nw=[...nm].reduce((a,c)=>a+(/[\x00-\x7f]/.test(c)?fs*.62:fs*1.04),0)+fs*.2*([...nm].length-1);const ic=fs*.82,bw=ic*2+8+nw,by=y+30+fs*.6;
    const bar=mob?226:150,bh=mob?fs*1.4:fs*1.25,yb=by+fs*.95;
-   const lt=active?'符合':'收藏夾 '+nf,rt=active?tot+' / '+all:all+' 支';
+   const lt0=active?'符合':'收藏夾 '+nf,rt=active?tot+' / '+all:all+' 支';const est=t=>[...t].reduce((a,c)=>a+(/[\x00-\x7f]/.test(c)?.58:1),0);const lt=(mob&&!active||est(lt0)*fs*(mob?.92:.75)+est(rt)*fs*(mob?.96:.78)+bh*1.1+fs*.5>bar)?(active?'':nf+' 夾'):lt0;
    top+='<g class="bd'+(sel?' sel':'')+(dim?' dm':'')+(hit?' hit':'')+'" data-t="g" data-v="'+gx+'" aria-hidden="true">'+
     '<g transform="translate('+f(x-bw/2+ic)+' '+f(by)+')" style="--ic:'+col[0]+'"><circle r="'+f(ic)+'" fill="'+col[0]+'" class="o bic"/><g fill="#fff" stroke="none" transform="scale('+f(ic/11)+')">'+ART.iOf(nm)+'</g></g>'+
     '<text x="'+f(x-bw/2+ic*2+8)+'" y="'+f(by+fs*.36)+'" class="bn" style="font-size:'+fs+'px;letter-spacing:'+f(fs*.2)+'px">'+esc(nm)+'</text>'+
     '<rect x="'+f(x-bar/2)+'" y="'+f(yb)+'" width="'+bar+'" height="'+f(bh)+'" rx="'+f(bh/2)+'" class="bar"/>'+
     '<text x="'+f(x-bar/2+bh*.55)+'" y="'+f(yb+bh*.7)+'" class="bl" style="font-size:'+f(fs*(mob?.92:.75))+'px">'+lt+'</text><text x="'+f(x+bar/2-bh*.55)+'" y="'+f(yb+bh*.7)+'" text-anchor="end" class="br" style="font-size:'+f(fs*(mob?.96:.78))+'px">'+rt+'</text></g>';});
   s+=top;
-  s+=mob?cloud(660,40,.8)+cloud(40,L.H*.55,.7):cloud(-30,70,1.1)+cloud(1420,260,.9)+cloud(1380,L.H-40,1)+cloud(-50,L.H*.45,.8);
+  s+=mob?cloud(660,40,.8)+cloud(-12,L.H*.42,.6):cloud(-30,70,1.1)+cloud(1420,260,.9)+cloud(1380,L.H-40,1)+cloud(-50,L.H*.45,.8);
   const mx=L.vb[0]+L.vb[2]-(mob?70:150),my=L.vb[1]+(mob?60:70);
   s+='<g class="night"><circle cx="'+mx+'" cy="'+my+'" r="'+(mob?22:30)+'" fill="#fff4c9"/><circle cx="'+(mx+9)+'" cy="'+(my-6)+'" r="'+(mob?20:27)+'" class="sea"/>'+[0,1,2,3].map(k=>'<ellipse cx="'+(mx-6)+'" cy="'+(my+(mob?50:62)+k*16)+'" rx="'+(26-k*5)+'" ry="2.4" fill="#fff4c9" opacity="'+(.55-k*.1)+'"/>').join('')+'</g>';
-  s+='</svg>';$('#map').innerHTML=s;$('#isl').classList.toggle('focus',(st.g!==null||st.f!==null)&&!active);
+  s+='</svg>';$('#map').innerHTML=s;{const rs=[...document.querySelectorAll('#map .rg')];const r0=rs.find(r=>r.classList.contains('sel'))||rs[0];if(r0)r0.tabIndex=0;}$('#isl').classList.toggle('focus',(st.g!==null||st.f!==null)&&!active);
  }
  const mq=window.matchMedia('(max-width:900px)');
  document.getElementById('app').innerHTML=
@@ -117,14 +119,15 @@ function app(D,F,gen,MA,MB){
  const st={q:'',g:null,f:null,sort:'new'};
  const H=new URLSearchParams(location.hash.slice(1));
  if(H.get('q'))st.q=H.get('q');if(H.get('f')!==null&&H.get('f')!=='')st.f=+H.get('f');else if(H.get('g')!==null&&H.get('g')!=='')st.g=+H.get('g');if(st.g!==null&&!groups[st.g])st.g=null;
- const hl=(s,ks)=>{if(!ks.length)return esc(s);const re=new RegExp('('+ks.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','gi');return s.split(re).map((p,i)=>i%2?'<mark>'+esc(p)+'</mark>':esc(p)).join('');};
+ const isW=k=>/^[a-z0-9]{1,3}$/.test(k),kpat=k=>isW(k)?'(?<![a-z0-9])'+k+'(?![a-z0-9])':k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+ const hl=(s,ks)=>{if(!ks.length)return esc(s);const re=new RegExp('(?:'+ks.map(kpat).join('|')+')','gi'),out=[];let last=0,m;while((m=re.exec(s))){if(!m[0].length){re.lastIndex++;continue;}out.push(esc(s.slice(last,m.index)),'<mark>'+esc(m[0])+'</mark>');last=m.index+m[0].length;}out.push(esc(s.slice(last)));return out.join('');};
  let view=[],shown=0,ks=[];
  const card=i=>{const d=D[i];let sn='';
   if(ks.length&&d[6]){const nl=norm(d[6]);const p=ks.map(k=>nl.indexOf(k)).filter(x=>x>=0).sort((a,b)=>a-b)[0];if(p!==undefined){const s=Math.max(0,p-18);sn='<p class="sn">'+(s?'…':'')+hl(d[6].slice(s,s+70),ks)+'…</p>';}}
   const gn=F[d[2]].split('｜')[0],gc=ART.colOf(gn);
   return '<article class="card"><a class="th" href="'+esc(d[3])+'" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" style="--gc:'+gc[0]+';--gl:'+gc[1]+'"><svg class="ph" viewBox="-12 -12 24 24"><g fill="#fff" style="--ic:'+gc[0]+'">'+ART.iOf(gn)+'</g></svg>'+(d[8]?'<img src="'+esc(img(d[8]))+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<span class="du">'+d[4]+'</span></a>'+
   '<h3 class="tw"><a class="t" href="'+esc(d[3])+'" target="_blank" rel="noopener">'+hl(d[0],ks)+'</a></h3><div class="up">'+hl(d[1],ks)+' · <span class="nw">'+d[5]+' 收藏</span></div>'+sn+
-  '<button class="f" type="button" data-i="'+d[2]+'">'+esc(fshort(d[2]))+'</button></article>';};
+  '<button class="f" type="button" data-i="'+d[2]+'">'+hl(fshort(d[2]),ks)+'</button></article>';};
  const more=()=>{const n=Math.min(shown+48,view.length);if(n<=shown)return;$('#grid').insertAdjacentHTML('beforeend',view.slice(shown,n).map(card).join(''));shown=n;};
  const fill=()=>{let g=0;while(shown<view.length&&g++<20&&$('#more').getBoundingClientRect().top<innerHeight+900)more();};
 
@@ -134,16 +137,16 @@ function app(D,F,gen,MA,MB){
  function render(){
   const fk=fkey();
   ks=norm(st.q).split(/\s+/).filter(Boolean);
-  const hit=[];D.forEach((d,i)=>{if(ks.every(k=>hay[i].includes(k)))hit.push(i);});
+  const tests=ks.map(k=>{if(!isW(k))return h=>h.includes(k);const r=new RegExp(kpat(k));return h=>r.test(h);});const hit=[];D.forEach((d,i)=>{if(tests.every(t=>t(hay[i])))hit.push(i);});
   const cf=F.map(()=>0);hit.forEach(i=>cf[D[i][2]]++);
   const inScope=i=>st.f!==null?D[i][2]===st.f:st.g!==null?groups[st.g].items.some(x=>x.i===D[i][2]):true;
   let rows=hit.filter(inScope);if(st.sort==='old')rows=rows.slice().reverse();
   lastCf=cf;lastActive=ks.length>0;drawMap(cf,lastActive);
   let c1='<button data-t="all" aria-pressed="'+(st.f===null&&st.g===null)+'">全部 <span>'+hit.length+'</span></button>',c2='';
-  groups.forEach((g,gx)=>{if(!g.items.some(x=>fc[x.i]))return;const gt=g.items.reduce((a,x)=>a+cf[x.i],0);
+  ORD.forEach(gx=>{const g=groups[gx];if(!g.items.some(x=>fc[x.i]))return;const gt=g.items.reduce((a,x)=>a+cf[x.i],0);
    const open=st.g===gx||(st.f!==null&&g.items.some(x=>x.i===st.f));const R=ART.colOf(g.name);
    c1+='<button data-t="g" data-v="'+gx+'" aria-pressed="'+open+'"'+(gt?'':' class="zero"')+'><i style="background:'+R[0]+'"></i>'+esc(g.name)+' <span>'+gt+'</span></button>';
-   if(open)g.items.forEach(x=>{if(fc[x.i])c2+='<button data-t="f" data-v="'+x.i+'" aria-pressed="'+(st.f===x.i)+'">'+esc(x.sub)+' <span>'+cf[x.i]+'</span></button>';});});
+   if(open&&nodesOf(g).length>1)g.items.forEach(x=>{if(fc[x.i])c2+='<button data-t="f" data-v="'+x.i+'" aria-pressed="'+(st.f===x.i)+'">'+esc(x.sub)+' <span>'+cf[x.i]+'</span></button>';});});
   $('#chips').innerHTML='<div class="cr"><span class="cl">總分類</span>'+c1+'</div>'+(c2?'<div class="cr sub"><span class="cl">收藏夾</span>'+c2+'</div>':'');
   document.querySelectorAll('#chips .cr').forEach(cr=>{const b=cr.querySelector('[aria-pressed=true]:not([data-t=all])');if(b&&cr.scrollWidth>cr.clientWidth)cr.scrollLeft=Math.max(0,b.offsetLeft-(cr.clientWidth-b.offsetWidth)/2);});
   const scope=st.f!==null?fshort(st.f):st.g!==null?groups[st.g].name:'';const sq=ks.length?'搜尋「'+st.q.trim()+'」':'';
@@ -161,17 +164,18 @@ function app(D,F,gen,MA,MB){
  q.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go();if(mq.matches)q.blur();}});
  $('#x').onclick=()=>{st.q='';q.value='';render();q.focus();};
  $('#so').onchange=e=>{st.sort=e.target.value;render();};
- const pick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;const inMap=!!b.closest('#map');st.f=t==='f'?+b.dataset.v:null;st.g=t==='g'?+b.dataset.v:null;render();if(inMap)go();};
+ const pick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;const inMap=!!b.closest('#map');st.f=t==='f'?+b.dataset.v:null;st.g=t==='g'?+b.dataset.v:null;render();if(inMap){const c=$('#chips [data-t=g][data-v="'+b.dataset.v+'"]');if(c)c.focus({preventScroll:true});go();}};
  $('#map').addEventListener('click',pick);$('#chips').addEventListener('click',pick);
- $('#map').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-t]');if(b){e.preventDefault();e.stopPropagation();pick({target:b});}}});
+ $('#map').addEventListener('focusin',e=>{const r=e.target.closest('.rg');if(!r)return;document.querySelectorAll('#map .rg').forEach(x=>x.tabIndex=x===r?0:-1);});
+ $('#map').addEventListener('keydown',e=>{const K={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};if(e.key in K||e.key==='Home'||e.key==='End'){const rs=[...document.querySelectorAll('#map .rg')],i=rs.indexOf(e.target.closest('.rg'));if(i<0)return;e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?rs.length-1:(i+K[e.key]+rs.length)%rs.length;rs[n].focus();return;}if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-t]');if(b){e.preventDefault();e.stopPropagation();pick({target:b});}}});
  const mbox=$('.mapbox'),setMap=c=>{mbox.classList.toggle('closed',c);$('#mt').textContent=c?'展開地圖':'收合地圖';$('#mt').setAttribute('aria-expanded',String(!c));try{localStorage.setItem('bm',c?'closed':'open');}catch(e){}};
  $('#mt').onclick=()=>setMap(!mbox.classList.contains('closed'));
  try{if(localStorage.getItem('bm')==='closed')setMap(true);}catch(e){}
  $('.skip').onclick=e=>{e.preventDefault();const t=$('#grid .t');if(t){t.scrollIntoView({block:'center'});t.focus();}};
  let ly=scrollY;addEventListener('scroll',()=>{const y=scrollY,t=document.querySelector('.top');if(!mq.matches){t.classList.remove('hs');ly=y;return;}if(y>ly+6&&y>140&&document.activeElement!==q)t.classList.add('hs');else if(y<ly-6||y<=140)t.classList.remove('hs');ly=y;},{passive:true});
- $('#grid').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='rs'){st.q='';q.value='';st.f=null;st.g=null;render();}else if(b.classList.contains('f')){st.f=+b.dataset.i;st.g=null;render();go();}});
+ $('#grid').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='rs'){st.q='';q.value='';st.f=null;st.g=null;render();}else if(b.classList.contains('f')){st.f=+b.dataset.i;st.g=null;render();const c=$('#chips [data-t=f][data-v="'+st.f+'"]')||$('#chips [data-t=g][aria-pressed=true]');if(c)c.focus({preventScroll:true});go();}});
  if('IntersectionObserver' in window)new IntersectionObserver(es=>{if(es[0].isIntersecting)fill();},{rootMargin:'900px'}).observe($('#more'));else addEventListener('scroll',fill);
- document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();q.select();}else if(e.key==='Escape'&&document.activeElement===q&&st.q){st.q='';q.value='';render();}});
+ document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();q.select();}else if(e.key==='Escape'){if(document.activeElement===q&&st.q){st.q='';q.value='';render();}else if(st.g!==null||st.f!==null){st.g=null;st.f=null;render();}}});
  const root=document.documentElement;let th='auto';try{th=localStorage.getItem('bt')||'auto';}catch(e){}
  const setTh=t=>{th=t;if(t==='auto')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);try{localStorage.setItem('bt',t);}catch(e){}document.querySelectorAll('.theme button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.th===t)));};
  document.querySelector('.theme').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setTh(b.dataset.th);});setTh(th);
