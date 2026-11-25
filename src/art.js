@@ -54,11 +54,11 @@ const ART=(()=>{
   '<path d="M-58-58H32L28-44Q22-38 16-44Q10-38 4-44Q-2-38-8-44Q-14-38-20-44Q-26-38-32-44Q-38-38-44-44Q-50-38-56-44Z" fill="#e8566c"'+O+'/><path d="M-43-58l-1 14M-19-58l-1 14M5-58l-1 14" stroke="#fff" stroke-width="6"/>'+
   '<rect class="win" x="-46" y="-34" width="30" height="22" rx="2" fill="#bfe3f5" stroke="#2a2340" stroke-width="2.5"/><path d="M-2 0V-28Q-2-34 6-34Q14-34 14-28V0Z" fill="#7a4a2e"'+O+'/>'+
   '<path d="M-62 0L-60-12H-48L-46 0Z" fill="#c9644f"'+O+'/><circle cx="-54" cy="-18" r="7" fill="#5fb35a"'+O+'/>',
- '感情':()=>'<ellipse cx="0" cy="-6" rx="30" ry="9" fill="#9fdcec"'+O+'/><path d="M0-10V-26" stroke="#9fdcec" stroke-width="4"/><path class="drop" d="M0-26q-8-6-12 4M0-26q8-6 12 4" fill="none" stroke="#bfeaf5" stroke-width="3" stroke-linecap="round"/>'+
+ '感情':()=>'<g transform="scale(.82)"><ellipse cx="0" cy="-6" rx="30" ry="9" fill="#9fdcec"'+O+'/><path d="M0-10V-26" stroke="#9fdcec" stroke-width="4"/><path class="drop" d="M0-26q-8-6-12 4M0-26q8-6 12 4" fill="none" stroke="#bfeaf5" stroke-width="3" stroke-linecap="round"/>'+
   '<path d="M0-24C-62-64-74-132-32-146C-12-152 0-136 0-124C0-136 12-152 32-146C74-132 62-64 0-24" fill="none" stroke="#2a2340" stroke-width="20" stroke-linecap="round" class="ol2"/>'+
   '<path d="M0-24C-62-64-74-132-32-146C-12-152 0-136 0-124C0-136 12-152 32-146C74-132 62-64 0-24" fill="none" stroke="#5fae5f" stroke-width="15" stroke-linecap="round"/>'+
   (()=>{let s='';const pts=[[-46,-62],[-60,-96],[-52,-130],[-26,-146],[-6,-132],[6,-132],[26,-146],[52,-130],[60,-96],[46,-62],[-24,-40],[24,-40]];pts.forEach((p,i)=>s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(i%3?5:6.5)+'" fill="'+(i%2?'#ff8fb1':'#ff5c8a')+'" stroke="#2a2340" stroke-width="1.6"/>');return s;})()+
-  '<path d="M0-78C-12-90-20-98-14-104C-10-108-4-106 0-100C4-106 10-108 14-104C20-98 12-90 0-78Z" fill="#ff5c8a"'+O+'/>',
+  '<path d="M0-78C-12-90-20-98-14-104C-10-108-4-106 0-100C4-106 10-108 14-104C20-98 12-90 0-78Z" fill="#ff5c8a"'+O+'/></g>',
  '娛樂':()=>'<path d="M-34 0L0-82 34 0" fill="none" stroke="#2a2340" stroke-width="9" stroke-linejoin="round"/><path d="M-34 0L0-82 34 0" fill="none" stroke="#7d6aa8" stroke-width="5" stroke-linejoin="round"/>'+
   '<g class="wheel">'+(()=>{let s='<circle cx="0" cy="-82" r="62" fill="none" stroke="#2a2340" stroke-width="8"/><circle cx="0" cy="-82" r="62" fill="none" stroke="#ff6b81" stroke-width="5"/>';for(let k=0;k<8;k++){const a=k/8*Math.PI*2;s+='<path d="M0-82L'+(Math.cos(a)*62).toFixed(1)+' '+(-82+Math.sin(a)*62).toFixed(1)+'" stroke="#ff9aa8" stroke-width="2"/>';}
    for(let k=0;k<8;k++){const a=k/8*Math.PI*2,x=Math.cos(a)*62,y=-82+Math.sin(a)*62;s+='<rect x="'+(x-8).toFixed(1)+'" y="'+(y-2).toFixed(1)+'" width="16" height="13" rx="4" fill="'+['#ffd166','#4cc9f0','#90be6d','#f9844a'][k%4]+'" stroke="#2a2340" stroke-width="2"/>';}return s;})()+'</g>'+
@@ -74,7 +74,7 @@ const ART=(()=>{
   '<circle cx="22" cy="-126" r="4" fill="#ff6b6b"/><circle cx="-22" cy="-104" r="4" fill="#ff6b6b"/><circle cx="44" cy="-90" r="4" fill="#ff6b6b"/>'+
   '<rect x="-12" y="-58" width="24" height="22" rx="2" fill="#f0c27b"'+O+'/><circle class="gl" cx="0" cy="-47" r="16" fill="#ffd36b" opacity="0"/><path d="M-17-56L0-72 17-56Z" fill="#c4513b"'+O+'/><circle cx="0" cy="-47" r="5" fill="#5a3418"/>'+
   '<g class="bird"><ellipse cx="44" cy="-78" rx="10" ry="8" fill="#ffd34d"'+O+'/><path d="M53-80l7 2-7 3z" fill="#ff8a36"/><circle cx="47" cy="-81" r="1.8" fill="#2a2340"/></g>',
- '_':()=>'<path d="M-46 0L0-96 46 0Z" fill="#f4efe6"'+O+'/><path d="M0-96L46 0H14Z" fill="#e2d6c2"/><path d="M-10 0L0-36 10 0Z" fill="#7a4a2e"/><path d="M0-96V-124" stroke="#2a2340" stroke-width="3"/><path d="M0-124l22 7-22 7z" fill="#e8566c"'+O+'/>'
+ '_':(fc)=>'<path d="M-44 0L0-70 44 0Z" fill="#f4efe6"'+O+'/><path d="M0-70L44 0H14Z" fill="#e2d6c2"/><path d="M-9 0L0-26 9 0Z" fill="#7a4a2e"/><path d="M0-70V-92" stroke="#2a2340" stroke-width="3"/><path d="M0-92l18 6-18 6z" fill="'+(fc||'#e8566c')+'"'+O+'/>'
  };
  /* badge icons, 24-unit box, white on the region colour */
  const I={
@@ -114,5 +114,13 @@ const ART=(()=>{
   '萌寵':['#86c46f','#67a653',(r,cx,cy,rx,ry)=>sc(r,cx,cy,rx,ry,14,(x,y)=>'<path d="M'+fx(x-4)+' '+fx(y)+'l2-7 2 5 2-6 2 8" fill="none" stroke="#4f9443" stroke-width="1.8" stroke-linejoin="round"/>')],
   '_':['#d6e8c2','#b7cf9d',()=>'']
  };
- return {L,I,COL,T};
+
+ /* groups the owner adds later get a stable look of their own, picked from the name */
+ const PAL=[['#6b8f71','#cfe3b8','#d6e8c2','#b7cf9d','#e8566c'],['#4c7fa8','#c4dcee','#d3e6f2','#a8c9de','#3a8bd6'],['#a8644a','#efd2c4','#f1ddd0','#dcb9a5','#d9542a'],['#7a6aa8','#dcd3ee','#e2dcf0','#c2b6dd','#7a5cc8'],['#a0883a','#f1e3ab','#f1e7bd','#dccb85','#d4892a'],['#3f9a8f','#c3e6e0','#d0ece7','#a3d3cb','#24a596']];
+ const hv=nm=>{let h=0;for(const c of String(nm))h=(h*31+c.charCodeAt(0))>>>0;return h%PAL.length;};
+ const colOf=nm=>COL[nm]||[PAL[hv(nm)][0],PAL[hv(nm)][1]];
+ const tOf=nm=>T[nm]||[PAL[hv(nm)][2],PAL[hv(nm)][3],()=>''];
+ const lOf=nm=>L[nm]||(()=>L._(PAL[hv(nm)][4]));
+ const iOf=nm=>I[nm]||I._;
+ return {L,I,COL,T,colOf,tOf,lOf,iOf};
 })();
