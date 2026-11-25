@@ -1,28 +1,101 @@
-<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>收藏島</title><style>:root{--paper:#eef3f6;--ink:#1b2735;--ink2:#526273;--line:#cad6df;--accent:#c8462a}
-@media(prefers-color-scheme:dark){:root{--paper:#0e141c;--ink:#e8edf3;--ink2:#9aa8b8;--line:#253141;--accent:#ff8a5c}}
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light dark"><title>收藏島</title><style>
+:root{--paper:#eef3f6;--ink:#1b2735;--ink2:#526273;--line:#cad6df;--accent:#c8462a;--err:#a93620;--sea:#245f85;--sel:#c8462a26}
+@media(prefers-color-scheme:dark){:root{--paper:#0e141c;--ink:#e8edf3;--ink2:#9aa8b8;--line:#253141;--accent:#ff8a5c;--err:#ff8a5c;--sea:#7fb8d9;--sel:#ff8a5c33}}
 *{box-sizing:border-box}html{color-scheme:light dark}
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--paper);color:var(--ink);font:15px/1.65 "PingFang TC","Noto Sans TC","Microsoft JhengHei UI","Microsoft JhengHei",system-ui,sans-serif}
-main{width:min(380px,calc(100vw - 40px))}.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:8px}h1{font-size:30px;line-height:1.3;margin:0 0 22px}
-form{display:flex;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:6px}form:focus-within{border-color:var(--accent)}
-#pw{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:20px;padding:6px 0;outline:none}
-#go{border:0;background:var(--ink);color:var(--paper);font:inherit;font-size:14px;font-weight:600;padding:6px 16px;border-radius:6px;cursor:pointer}#go:disabled{opacity:.5;cursor:default}
-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}label{display:block;margin-top:14px;font-size:13.5px;color:var(--ink2)}#msg{min-height:1.6em;margin:10px 0 0;font-size:13.5px;color:var(--accent)}</style></head><body><main><div class="eyebrow">收藏島</div><h1>輸入密碼</h1><form id="f"><input id="pw" type="password" autocomplete="current-password" aria-label="密碼" placeholder="密碼"><button id="go" type="submit">解鎖</button></form><label><input id="rm" type="checkbox"> 在這個裝置記住密碼</label><p id="msg" role="status"></p></main><script>(function gate(S,I,C,IT){
+body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px 0;background:var(--paper);color:var(--ink);font:16px/1.65 "PingFang TC","Noto Sans TC","Microsoft JhengHei UI","Microsoft JhengHei",system-ui,sans-serif;caret-color:var(--sea)}
+::selection{background:var(--sel);color:inherit}
+main{width:min(380px,calc(100vw - 40px))}
+.mark{display:block;width:84px;height:auto;color:var(--ink);margin:0 0 14px -4px;overflow:visible}
+.mark .isle{transform-origin:50% 100%;animation:rise .9s cubic-bezier(.16,1,.3,1) both}
+.mark .lamp{fill:var(--accent)}
+.mark .sea{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round}
+.mark .sea.b{opacity:.45}
+.mark .drift{animation:none}
+main[data-state=busy] .mark .drift,main[data-state=auto] .mark .drift{animation:drift 1.6s linear infinite}
+@keyframes rise{from{transform:translateY(8px);opacity:.25}to{transform:none;opacity:1}}
+@keyframes drift{to{transform:translateX(16px)}}
+h1{font-size:40px;line-height:1.2;letter-spacing:.06em;font-weight:800;margin:0 0 26px;text-wrap:balance}
+#lab{display:block;font-size:15px;font-weight:600;color:var(--ink2);margin:0 0 2px}
+form{display:flex;align-items:stretch;gap:6px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+form:focus-within{border-color:var(--sea)}
+#pw{flex:1;min-width:0;min-height:44px;border:0;background:transparent;color:var(--ink);font:inherit;font-size:20px;padding:6px 0;outline:none}
+#tg{border:0;background:transparent;color:var(--ink2);font:inherit;font-size:15px;min-width:48px;min-height:44px;padding:0 8px;border-radius:6px;cursor:pointer}
+#tg:hover{color:var(--ink);background:var(--line)}
+#go{border:0;background:var(--ink);color:var(--paper);font:inherit;font-size:16px;font-weight:700;min-height:44px;padding:0 18px;border-radius:6px;cursor:pointer}
+#go:hover:not(:disabled){background:var(--sea);color:var(--paper)}
+#go:disabled{opacity:.55;cursor:default}
+button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.rm{display:flex;gap:10px;align-items:flex-start;margin-top:10px;padding:8px 0;min-height:44px;font-size:15px;color:var(--ink);cursor:pointer}
+.rm input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--sea);cursor:pointer}
+.rm input:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.rm small{display:block;font-size:14px;line-height:1.5;color:var(--ink2)}
+#msg{min-height:1.7em;margin:6px 0 0;font-size:15px;color:var(--ink2)}
+main[data-state=error] #msg{color:var(--err);font-weight:600}
+main[data-state=auto] #panel{display:none}
+main[data-state=auto] #msg{font-size:18px;color:var(--ink);margin-top:0}
+.shake{animation:shake .38s cubic-bezier(.16,1,.3,1)}
+@keyframes shake{20%{transform:translateX(-6px)}45%{transform:translateX(5px)}70%{transform:translateX(-3px)}}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.mark .isle,.shake{animation:none}main[data-state=busy] .mark .drift,main[data-state=auto] .mark .drift{animation:none}}
+</style></head><body><main data-state="idle"><svg class="mark" viewBox="0 0 72 48" aria-hidden="true" focusable="false"><g class="isle"><path d="M6 32C12 25 18 21 25 24 30 14 40 9 49 15c7 4 13 10 17 17Z" fill="currentColor"/><circle class="lamp" cx="60" cy="9" r="3.6"/></g><clipPath id="c"><rect x="0" y="30" width="72" height="18"/></clipPath><g clip-path="url(#c)"><g class="drift"><path class="sea" d="M-28 37q8-5 16 0t16 0 16 0 16 0 16 0 16 0 16 0"/><path class="sea b" d="M-28 44q8-5 16 0t16 0 16 0 16 0 16 0 16 0 16 0"/></g></g></svg><h1>收藏島</h1><noscript><p>需要啟用 JavaScript 才能解鎖這個頁面。</p><style>#panel{display:none}</style></noscript><div id="panel"><label id="lab" for="pw">輸入密碼</label><form id="f"><input class="vh" type="text" name="username" autocomplete="username" value="收藏島" tabindex="-1" aria-hidden="true"><input id="pw" type="password" autocomplete="current-password" maxlength="256" aria-describedby="msg"><button id="tg" type="button" aria-pressed="false" aria-label="顯示密碼">顯示</button><button id="go" type="submit">解鎖</button></form><label class="rm"><input id="rm" type="checkbox"><span>在這個裝置記住我<small>只存在這個瀏覽器，不會儲存密碼本身。</small></span></label></div><p id="msg" role="status"></p></main><script>(function gate(S,I,C,IT){
  const $=s=>document.querySelector(s);
  const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
- const f=$('#f'),pw=$('#pw'),msg=$('#msg'),btn=$('#go');
- async function dec(p){
+ const main=$('main'),f=$('#f'),pw=$('#pw'),msg=$('#msg'),btn=$('#go'),tg=$('#tg'),rm=$('#rm');
+ const DB='shouzangdao-gate',ST='k',KEY='key:'+S;
+ const idb=(mode,fn)=>new Promise((res,rej)=>{
+  let r;try{r=indexedDB.open(DB,1);}catch(e){return rej(e);}
+  r.onupgradeneeded=()=>r.result.createObjectStore(ST);
+  r.onerror=()=>rej(r.error);
+  r.onsuccess=()=>{const db=r.result;let out;
+   try{const t=db.transaction(ST,mode);const q=fn(t.objectStore(ST));
+    if(q)q.onsuccess=()=>{out=q.result;};
+    t.oncomplete=()=>{db.close();res(out);};
+    t.onerror=t.onabort=()=>{db.close();rej(t.error);};
+   }catch(e){db.close();rej(e);}};
+ });
+ const keyGet=()=>idb('readonly',s=>s.get(KEY)).catch(()=>null);
+ const keySet=k=>idb('readwrite',s=>s.put(k,KEY)).catch(()=>{});
+ const keyDel=()=>idb('readwrite',s=>s.delete(KEY)).catch(()=>{});
+ window.forgetThisDevice=()=>keyDel().then(()=>{try{localStorage.removeItem('bk');}catch(e){}});
+ async function derive(p){
   const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
-  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(S),iterations:IT,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
-  return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(I)},key,b64(C)));
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(S),iterations:IT,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
  }
- async function go(p,remember){
-  if(!window.crypto||!crypto.subtle){msg.textContent='這個瀏覽器不支援解密，請改用較新的瀏覽器。';return;}
-  btn.disabled=true;msg.textContent='解鎖中…';
-  let h;try{h=await dec(p);}catch(e){msg.textContent='密碼不對，請再試一次。';btn.disabled=false;try{localStorage.removeItem('bk');}catch(e2){}pw.select();return;}
-  if(remember){try{localStorage.setItem('bk',p);}catch(e3){}}
-  document.open();document.write(h);document.close();
+ async function open(key){return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(I)},key,b64(C)));}
+ function show(h){document.open();document.write(h);document.close();}
+ function state(s,t){main.dataset.state=s;msg.textContent=t||'';}
+ function fail(t){
+  main.removeAttribute('aria-busy');pw.setAttribute('aria-invalid','true');state('error',t);btn.disabled=false;
+  f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake');pw.focus();
  }
- f.addEventListener('submit',e=>{e.preventDefault();go(pw.value,$('#rm').checked);});
- let saved=null;try{saved=localStorage.getItem('bk');}catch(e){}
- if(saved)go(saved,true);else pw.focus();
+ async function go(p){
+  if(!p){fail('請先輸入密碼。');return;}
+  if(!(window.crypto&&crypto.subtle)){fail('這個瀏覽器不支援解密，請改用較新的瀏覽器。');return;}
+  btn.disabled=true;pw.removeAttribute('aria-invalid');main.setAttribute('aria-busy','true');state('busy','解鎖中，請稍候…');
+  let key,h;
+  try{key=await derive(p);h=await open(key);}
+  catch(e){fail('密碼不對。請檢查大小寫與輸入法後再試一次。');return;}
+  if(rm.checked)await keySet(key);
+  show(h);
+ }
+ f.addEventListener('submit',e=>{e.preventDefault();go(pw.value);});
+ tg.addEventListener('click',()=>{
+  const on=pw.type==='password';pw.type=on?'text':'password';
+  tg.textContent=on?'隱藏':'顯示';tg.setAttribute('aria-pressed',String(on));tg.setAttribute('aria-label',on?'隱藏密碼':'顯示密碼');pw.focus();
+ });
+ pw.addEventListener('input',()=>{if(main.dataset.state==='error'){state('idle','');pw.removeAttribute('aria-invalid');}});
+ (async()=>{
+  if(location.hash==='#forget'){
+   await window.forgetThisDevice();history.replaceState(null,'',location.pathname+location.search);
+   state('idle','已忘記這個裝置，下次需要重新輸入密碼。');pw.focus();return;
+  }
+  let legacy=null;try{legacy=localStorage.getItem('bk');localStorage.removeItem('bk');}catch(e){}
+  const k=await keyGet();let stale=false;
+  if(k){state('auto','正在解鎖…');try{show(await open(k));return;}catch(e){await keyDel();stale=true;}}
+  else if(legacy){
+   state('auto','正在解鎖…');
+   try{const lk=await derive(legacy);const h=await open(lk);await keySet(lk);show(h);return;}catch(e){stale=true;}
+  }
+  state('idle',stale?'這台裝置記住的資料已失效，請重新輸入密碼。':'');pw.focus();
+ })();
 }
